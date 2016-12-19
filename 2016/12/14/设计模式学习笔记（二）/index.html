@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>设计模式学习笔记（二） | blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="单元素模式（单例模式）  简单说就是某个对象在整个代码流程中只允许实例化一次 
+
+通常该模式中包含一个私有的构造函数和私有克隆函数，还有一个私有静态属性和共有静态方法 
+代码实例
+
+12345678910111213141516class Singleton&amp;#123;    private static $_instance = NULL;    private function __const">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习笔记（二）">
+<meta property="og:url" content="http://yangqiuyan.yangbaojin.cc/2016/12/14/设计模式学习笔记（二）/index.html">
+<meta property="og:site_name" content="blog">
+<meta property="og:description" content="单元素模式（单例模式）  简单说就是某个对象在整个代码流程中只允许实例化一次 
+
+通常该模式中包含一个私有的构造函数和私有克隆函数，还有一个私有静态属性和共有静态方法 
+代码实例
+
+12345678910111213141516class Singleton&amp;#123;    private static $_instance = NULL;    private function __const">
+<meta property="og:updated_time" content="2016-12-14T08:33:08.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式学习笔记（二）">
+<meta name="twitter:description" content="单元素模式（单例模式）  简单说就是某个对象在整个代码流程中只允许实例化一次 
+
+通常该模式中包含一个私有的构造函数和私有克隆函数，还有一个私有静态属性和共有静态方法 
+代码实例
+
+12345678910111213141516class Singleton&amp;#123;    private static $_instance = NULL;    private function __const">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yangqiuyan.yangbaojin.cc"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+          <a class="main-nav-link" href="/mydarling">her</a>
+        
+          <a class="main-nav-link" href="/atom.xml">rss</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-设计模式学习笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/14/设计模式学习笔记（二）/" class="article-date">
+  <time datetime="2016-12-14T06:44:52.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式学习笔记（二）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="单元素模式（单例模式）"><a href="#单元素模式（单例模式）" class="headerlink" title="单元素模式（单例模式）"></a>单元素模式（单例模式）</h2><p><strong>  简单说就是某个对象在整个代码流程中只允许实例化一次 </strong></p>
+<ul>
+<li>通常该模式中包含一个私有的构造函数和私有克隆函数，还有一个私有静态属性和共有静态方法 </li>
+<li>代码实例</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> $_instance = <span class="keyword">NULL</span>;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">self</span>::$_instance == <span class="keyword">NULL</span>)&#123;<span class="comment">//确保只有一个实例</span></div><div class="line">            <span class="keyword">self</span>::$_instance = <span class="keyword">new</span> <span class="keyword">self</span>();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::$_instance;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$Singleton = Singleton::getInstance();</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yangqiuyan.yangbaojin.cc/2016/12/14/设计模式学习笔记（二）/" data-id="ciwpogb2i0000qwowqfukgizj" class="article-share-link">分享</a>
+      
+        <a href="http://yangqiuyan.yangbaojin.cc/2016/12/14/设计模式学习笔记（二）/#ds-thread" class="article-comment-link">留言</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/08/设计模式学习笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">设计模式学习笔记（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+      <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2016/12/14/设计模式学习笔记（二）/" data-title="设计模式学习笔记（二）" data-url="http://yangqiuyan.yangbaojin.cc/2016/12/14/设计模式学习笔记（二）/"></div>
+	<!-- 多说评论框 end -->
+</div>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title tagcloud">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/笔记/" style="font-size: 20px;">笔记</a> <a href="/tags/随便写写/" style="font-size: 10px;">随便写写</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/14/设计模式学习笔记（二）/">设计模式学习笔记（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/08/设计模式学习笔记（一）/">设计模式学习笔记（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/01/first-page/">第一篇文章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+     
+
+  <div class="widget-wrap">
+    <h3 class="widget-title lastest-comments">最新评论</h3>
+    <div class="widget">
+         <div class="hot-comments">
+    <!-- 多说最新评论 start -->
+	<div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+    <!-- 多说最新评论 end -->
+</div>
+    </div>
+  </div>
+
+
+
+  
+     
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title archive">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2016 yangbaojin&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;http://yangqiuyan.yangbaojin.cc
+    </div>
+  </div>
+</footer>
+    </div>
+
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+    <a href="/mydarling" class="mobile-nav-link">her</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">rss</a>
+  
+</nav>
+    
+
+
+    	<script type="text/javascript">
+        var duoshuoQuery = {short_name:"yangqiuyan"};
+      </script>
+      <script src="/duoshuo/embed.js"></script>
+
+
+ <script src="/jquery/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+    
+  </div>
+</body>
+</html>
